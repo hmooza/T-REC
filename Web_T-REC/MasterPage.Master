@@ -37,17 +37,18 @@
     <form id="form1" runat="server">
         <%--<ajaxToolkit:ToolkitScriptManager runat="server" EnableScriptGlobalization="True">
              </ajaxToolkit:ToolkitScriptManager>--%>
-        <%--<asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptGlobalization="true">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptGlobalization="true">
             <Scripts>
-                <asp:ScriptReference Name="GridView.js" Path="Script/GridView.js" />
+                <%--<asp:ScriptReference Name="GridView.js" Path="Script/GridView.js" />--%>
             </Scripts>
-        </asp:ScriptManager>--%>
+        </asp:ScriptManager>
 
 
-        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnableScriptGlobalization="True">
+
+        <%--<asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnableScriptGlobalization="True">
             <Scripts>
             </Scripts>
-        </asp:ToolkitScriptManager>
+        </asp:ToolkitScriptManager>--%>
 
         <!-- BRANDNER -->
         <%--  <div class="col-lg-offset-1 col-lg-pull-12" >
