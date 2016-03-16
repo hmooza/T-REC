@@ -1,0 +1,250 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="Web_T_REC.MasterPage" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile viewport optimized -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
+   
+
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="bootstrap/JQuery/jquery.min.js"></script>
+
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/jquery-1.8.2.js"></script>
+    <script src="bootstrap/js/bootstrap-datepicker.js"></script>
+    <link href="bootstrap/css/datepicker.css" rel="stylesheet" />
+    <link href="Script/gridviewJs.css" rel="stylesheet" />
+    <script src="Script/ScriptCommon.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <%--<ajaxToolkit:ToolkitScriptManager runat="server" EnableScriptGlobalization="True">
+             </ajaxToolkit:ToolkitScriptManager>--%>
+        <%--<asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptGlobalization="true">
+            <Scripts>
+                <asp:ScriptReference Name="GridView.js" Path="Script/GridView.js" />
+            </Scripts>
+        </asp:ScriptManager>--%>
+
+
+        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnableScriptGlobalization="True">
+            <Scripts>
+            </Scripts>
+        </asp:ToolkitScriptManager>
+
+        <!-- BRANDNER -->
+        <%--  <div class="col-lg-offset-1 col-lg-pull-12" >
+            <style>
+                .ratio {
+                    position: relative;
+                    width: 100%;
+                    height: inherit;
+                    padding-bottom: 0;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-size: cover;
+                }
+            </style>
+            <div class="col-lg-12 col-md-12 col-xs-12 thumb">
+                <div>
+                    <img class="img-responsive" src="Pic/ses_banner1.png" alt="Responsive image" />
+                </div>
+            </div>
+        </div>--%>
+
+
+
+
+
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                <header>
+                    <div class="content-wrapper">
+                        <div class="container">
+                            <%--<img src="Pic/ses_banner1.png" />--%>
+
+                            <!-- BRANDNER -->
+                            <div>
+                                <style>
+                                    .ratio {
+                                        position: relative;
+                                        width: 100%;
+                                        height: inherit;
+                                        padding-bottom: 0;
+                                        background-repeat: no-repeat;
+                                        background-position: center center;
+                                        background-size: cover;
+                                    }
+                                </style>
+                                <%-- <div class="col-lg-11 col-md-11 col-xs-11 thumb">
+                                    <div class="thumbnail">
+                                        <img class="ratio" src="Pic/ses_banner1.png" />
+                                    </div>
+                                </div>--%>
+
+                                <div class="col-lg-12 col-md-12 col-xs-12 thumb">
+                                    <div>
+                                        <img class="img-responsive" src="Pic/ses_banner1.png" alt="Responsive image" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+                        <div class="col-xs-offset-2 col-sm-offset-5 col-md-offset-8">
+                            <div class="row" style="padding-top: 5px;">
+                                <div class="form-group">
+                                    <table>
+                                        <tr>
+                                            <%-- <td style="width: 100px; padding-right: 10px;">
+                                                <asp:DropDownList ID="ddlBranch" runat="server" CssClass="form-control input-sm" Width="100px">
+                                                    <asp:ListItem Value="1">สาขาหลัก</asp:ListItem>
+                                                    
+                                                </asp:DropDownList>
+                                            </td>--%>
+
+                                            <td>
+                                                <section id="login">
+                                                    <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">
+                                                        <AnonymousTemplate>
+                                                            <ul>
+                                                                <%--<li><a id="registerLink" runat="server" href="~/Account/Register">Register</a></li>--%>
+                                                                <%--  <li><a id="loginLink" runat="server" href="~/Account/Login.aspx">Log in</a></li>--%>
+                                                                <li><a id="loginLink" runat="server" href="~/Login1.aspx">Log in</a></li>
+                                                            </ul>
+                                                        </AnonymousTemplate>
+                                                        <LoggedInTemplate>
+                                                            <p>
+                                                                Hello, <a id="A2" runat="server" class="username" href="~/Account/Manage" title="Manage your account">
+                                                                    <asp:LoginName ID="LoginName1" runat="server" CssClass="username" />
+                                                                </a>!
+                                <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="Login1.aspx" />
+                                                                <!-- LogoutPageUrl="~/Account/Login.aspx"  -->
+                                                            </p>
+                                                        </LoggedInTemplate>
+                                                    </asp:LoginView>
+                                                </section>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </header>
+
+                <div id="menu" runat="server">
+                    <%--<div class="container">--%>
+                    <ul class="nav nav-pills">
+                        <li class="active"><a href="Default.aspx">Home</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">SYSTEM DATA<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="sys_User.aspx">USER</a></li>
+                                <li><a href="Employee.aspx">EMPLOYEE</a></li>
+                                <li><a href="Customer.aspx">CUSTOMER</a></li>
+                                <li><a href="JobPosition.aspx">Job Position</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">Q<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="JobQ.aspx">Job Q</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">EQUIPTMENT<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="EquiptmentType.aspx">Equipment Type</a></li>
+                                <li><a href="Equiptment.aspx">Equipment Master</a></li>
+                                <li><a href="EquiptmentSET.aspx">Equipment SET</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="Quotation.aspx">QUOTATION</a></li>
+                        <li><a href="Quotation.aspx">INVOICE</a></li>
+                        <li><a href="Quotation.aspx">SARALY</a></li>
+
+                        <%--       <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">QUOTATION<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="Rpt_StudentInClass.aspx">Student In Class</a></li>
+                                <li><a href="Rpt_Summary_Reciept.aspx">Receipt</a></li>
+                                <li><a href="Rpt_Termly.aspx">Termly</a></li>
+                                <li><a href="Payment_arrears.aspx">ยอดค้างชำระ</a></li>
+                            </ul>
+                        </li>--%>
+
+                        <%--<li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">System<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="Rpt_StudentInClass.aspx">Reset Password</a></li>
+                            </ul>
+                        </li>--%>
+                    </ul>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p></p>
+                        </div>
+                        <div class="col-md-3">
+                            <p></p>
+                        </div>
+                        <div class="col-md-3">
+                            <p></p>
+                        </div>
+                        <div class="col-md-3">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+
+                <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>--%>
+                <%--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>--%>
+
+
+
+                <div>
+
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+</body>
+</html>

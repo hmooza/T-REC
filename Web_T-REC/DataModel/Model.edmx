@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Employees" EntityType="Model.Store.Employees" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Employees_Position" EntityType="Model.Store.Employees_Position" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Equipment" EntityType="Model.Store.Equipment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Equipment_SET" EntityType="Model.Store.Equipment_SET" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Equipment_SET_detail" EntityType="Model.Store.Equipment_SET_detail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Equipment_Type" EntityType="Model.Store.Equipment_Type" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="JobPosition" EntityType="Model.Store.JobPosition" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Roles" EntityType="Model.Store.Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="Model.Store.Users" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="running" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="128" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="128" />
+          <Property Name="Nickname" Type="nvarchar" MaxLength="128" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdenNumber" Type="nvarchar" MaxLength="13" />
+          <Property Name="AccNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="AccName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="position" Type="nvarchar" MaxLength="50" />
+          <Property Name="salary" Type="decimal" />
+        </EntityType>
+        <EntityType Name="Employees_Position">
+          <Key>
+            <PropertyRef Name="Emp_id" />
+            <PropertyRef Name="Pos_id" />
+          </Key>
+          <Property Name="Emp_id" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Pos_id" Type="int" Nullable="false" />
+          <Property Name="cost" Type="decimal" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" />
+          <Property Name="Equip_type_id" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fullname" Type="nvarchar" MaxLength="256" />
+          <Property Name="SN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Number" Type="nvarchar" MaxLength="50" />
+          <Property Name="CostBuy" Type="decimal" Scale="2" />
+          <Property Name="CostRent" Type="decimal" Scale="2" />
+          <Property Name="SupplierName" Type="nvarchar" MaxLength="256" />
+          <Property Name="BuyDate" Type="date" />
+          <Property Name="ReceiptTax" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExpireDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Equipment_SET">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SETName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Equipment_SET_detail">
+          <Key>
+            <PropertyRef Name="SET_ID" />
+            <PropertyRef Name="Equip_ID" />
+          </Key>
+          <Property Name="SET_ID" Type="int" Nullable="false" />
+          <Property Name="Equip_ID" Type="int" Nullable="false" />
+          <Property Name="cost" Type="decimal" />
+          <Property Name="discount" Type="int" />
+          <Property Name="running" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Equipment_Type">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="250" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="JobPosition">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Position" Type="nvarchar" MaxLength="150" />
+          <Property Name="cost" Type="decimal" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="rolename" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" />
+          <Property Name="Employee_ID" Type="nvarchar" MaxLength="10" />
+          <Property Name="Role_ID" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Employees" EntityType="Model.Employees" />
+          <EntitySet Name="Employees_Position" EntityType="Model.Employees_Position" />
+          <EntitySet Name="Equipment" EntityType="Model.Equipment" />
+          <EntitySet Name="Equipment_SET" EntityType="Model.Equipment_SET" />
+          <EntitySet Name="Equipment_SET_detail" EntityType="Model.Equipment_SET_detail" />
+          <EntitySet Name="Equipment_Type" EntityType="Model.Equipment_Type" />
+          <EntitySet Name="JobPosition" EntityType="Model.JobPosition" />
+          <EntitySet Name="Roles" EntityType="Model.Roles" />
+          <EntitySet Name="Users" EntityType="Model.Users" />
+        </EntityContainer>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="running" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Firstname" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Lastname" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Nickname" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="IdenNumber" Type="String" MaxLength="13" Unicode="true" FixedLength="false" />
+          <Property Name="AccNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="AccName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="position" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="salary" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Employees_Position">
+          <Key>
+            <PropertyRef Name="Emp_id" />
+            <PropertyRef Name="Pos_id" />
+          </Key>
+          <Property Name="Emp_id" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Pos_id" Type="Int32" Nullable="false" />
+          <Property Name="cost" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Equip_type_id" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Fullname" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="SN" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Number" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CostBuy" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CostRent" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SupplierName" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="BuyDate" Type="DateTime" Precision="0" />
+          <Property Name="ReceiptTax" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ExpireDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Equipment_SET">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="SETName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Equipment_SET_detail">
+          <Key>
+            <PropertyRef Name="SET_ID" />
+            <PropertyRef Name="Equip_ID" />
+          </Key>
+          <Property Name="SET_ID" Type="Int32" Nullable="false" />
+          <Property Name="Equip_ID" Type="Int32" Nullable="false" />
+          <Property Name="cost" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="discount" Type="Int32" />
+          <Property Name="running" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Equipment_Type">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="JobPosition">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Position" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="cost" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="rolename" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Employee_ID" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Role_ID" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="Model.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="running" ColumnName="running" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="IdenNumber" ColumnName="IdenNumber" />
+                <ScalarProperty Name="AccNo" ColumnName="AccNo" />
+                <ScalarProperty Name="AccName" ColumnName="AccName" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees_Position">
+            <EntityTypeMapping TypeName="Model.Employees_Position">
+              <MappingFragment StoreEntitySet="Employees_Position">
+                <ScalarProperty Name="Emp_id" ColumnName="Emp_id" />
+                <ScalarProperty Name="Pos_id" ColumnName="Pos_id" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment">
+            <EntityTypeMapping TypeName="Model.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Equip_type_id" ColumnName="Equip_type_id" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="SN" ColumnName="SN" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="CostBuy" ColumnName="CostBuy" />
+                <ScalarProperty Name="CostRent" ColumnName="CostRent" />
+                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+                <ScalarProperty Name="BuyDate" ColumnName="BuyDate" />
+                <ScalarProperty Name="ReceiptTax" ColumnName="ReceiptTax" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment_SET">
+            <EntityTypeMapping TypeName="Model.Equipment_SET">
+              <MappingFragment StoreEntitySet="Equipment_SET">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SETName" ColumnName="SETName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment_SET_detail">
+            <EntityTypeMapping TypeName="Model.Equipment_SET_detail">
+              <MappingFragment StoreEntitySet="Equipment_SET_detail">
+                <ScalarProperty Name="SET_ID" ColumnName="SET_ID" />
+                <ScalarProperty Name="Equip_ID" ColumnName="Equip_ID" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="running" ColumnName="running" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment_Type">
+            <EntityTypeMapping TypeName="Model.Equipment_Type">
+              <MappingFragment StoreEntitySet="Equipment_Type">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobPosition">
+            <EntityTypeMapping TypeName="Model.JobPosition">
+              <MappingFragment StoreEntitySet="JobPosition">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="Model.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rolename" ColumnName="rolename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Model.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
