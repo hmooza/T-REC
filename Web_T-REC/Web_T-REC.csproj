@@ -121,6 +121,9 @@
     <Compile Include="Account\ResetPassword.aspx.designer.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Classes\BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Classes\Class1.cs" />
     <Compile Include="Classes\ClassCustomer.cs" />
     <Compile Include="Classes\ClassEmployee.cs" />
