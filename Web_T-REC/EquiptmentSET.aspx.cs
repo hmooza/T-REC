@@ -70,38 +70,17 @@ namespace Web_T_REC
             grid_Detail.DataBind();
         }
 
-        //private void Addgrid_Detail()
-        //{
-        //    List<Equipment> lstEquipments = null;
-        //    Equipment[] Equipments = null;
-
-        //    int _id = Convert.ToInt32(this.ddlEquipmentList.SelectedItem.Value);
-        //    ClassSet.LoadTypeEquipment(out Equipments, null, _id);
-
-        //    if (Equipments != null && Equipments.Any())
-        //    {
-        //        lstEquipments = SSEquipments;
-
-        //        if (lstEquipments == null || !lstEquipments.Any() || lstEquipments.Count < 1)
-        //        {
-        //            lstEquipments = new List<Equipment>();
-        //        }
-
-        //        lstEquipments.AddRange(Equipments);
-        //        lstEquipments = lstEquipments.OrderBy(x => x.Name).ToList();
-        //    }
-
-        //    SSEquipments = lstEquipments;
-        //    grid_Detail.DataSource = lstEquipments;
-        //    grid_Detail.DataBind();
-        //}
-
         private void Save()
         {
+            Equipment_SET Equipment_SETone = new Equipment_SET();
+            Equipment_SETone.Price = Convert.ToDecimal(this.txtPrice.Text);
+            Equipment_SETone.SETName = this.txtSetName.Text;
+            Equipment_SETone.Description = this.txtDescription.Text;
+
             List<Equipment_SET_detail> lstEquipment_SET_detail = null;
 
-            GridView grid_Detail = (GridView)this.FindControl("grid_Detail");
-            if (grid_Detail != null && grid_Detail.Rows.Count > 0)
+            //GridView grid_Detail = grid_Detail;
+            if (this.grid_Detail != null && this.grid_Detail.Rows.Count > 0)
             {
                 lstEquipment_SET_detail = new List<Equipment_SET_detail>();
 
@@ -110,22 +89,21 @@ namespace Web_T_REC
                     Equipment_SET_detail en = new Equipment_SET_detail();
 
                     en.Equip_ID = Convert.ToInt32(item.Cells[Enum_grid_Detail.ID.GetHashCode()].Text);//ID
-                    en.cost = Convert.ToInt32(item.Cells[Enum_grid_Detail.CostRent.GetHashCode()].Text);//CostRent
-                    //en.discount = null;ไปบันทึกหน้า set หลัก
+                    en.cost = Convert.ToDecimal(item.Cells[Enum_grid_Detail.CostRent.GetHashCode()].Text);//CostRent
 
                     lstEquipment_SET_detail.Add(en);
                 }
             }
 
             //Call Save
+            bool result = ClassSet.SetData_Equipment(Equipment_SETone, lstEquipment_SET_detail);
+            if (result)
+            {
+            }
+
         }
 
         #region " Event "
-
-        protected void btnAdd_Click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void btnCencel_Click(object sender, EventArgs e)
         {
@@ -134,7 +112,7 @@ namespace Web_T_REC
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-
+            Save();
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
@@ -190,26 +168,27 @@ namespace Web_T_REC
 
         private enum Enum_grid_Detail
         {
-            No = 1,
-            Name = 2,
-            CostRent = 3,
-            UpdatedDate = 4,
-            UpdatedBy = 5,
-            ID = 6
+            No = 0,
+            Name = 1,
+            strCostRent = 2,
+            UpdatedDate = 3,
+            UpdatedBy = 4,
+            ID = 5,
+            CostRent = 6
         }
 
         protected void grid_Detail_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.Header)
-            {
-                e.Row.FindControl("ID");
-            }
-            else if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-            }
-            else if (e.Row.RowType == DataControlRowType.Footer)
-            {
-            }
+            //if (e.Row.RowType == DataControlRowType.Header)
+            //{
+            //    e.Row.FindControl("ID");
+            //}
+            //else if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+            //}
+            //else if (e.Row.RowType == DataControlRowType.Footer)
+            //{
+            //}
         }
 
     }
