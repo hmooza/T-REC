@@ -111,61 +111,75 @@ namespace Web_T_REC.Classes
             }
         }
 
-        public static string GetRunno()
+        public static int? GetID(string TB_Name, string Id)
         {
+            int? no = null;
             string strY = DateTime.Now.Year.ToString(new System.Globalization.CultureInfo("en-US"));
             StringBuilder sql = new StringBuilder();
-            sql.AppendLine("select ISNULL(MAX(a.running),1) as runno from dbo.Equipment_SET_detail");
+            sql.AppendLine("select ISNULL(MAX(a." + Id + "),1) as runno from dbo." + TB_Name + " a");
 
             DataTable dt = ClassMain.ExecuteComandTable(sql.ToString());
-            if (dt.Rows.Count > 0)
+            if (dt != null && dt.Rows.Count > 0)
             {
-                int no = Convert.ToInt32(dt.Rows[0][0]);
-                no += 1;
-                return no.ToString("00");
+                no = Convert.ToInt32(dt.Rows[0][0]);
             }
-
-
-            return "01";
+            return no;
         }
 
-        public static bool Insert(List<Equipment_SET_detail> en)
+        public static void GetDate_Equipment_SET(out Equipment_SET[] Equipment_SETs,int SET_ID)
         {
-            //ResultEN res = new ResultEN();
+            Web_T_REC.DataModel.Entities efen = new DataModel.Entities();
 
-            // Gen Employee code
-            System.Globalization.CultureInfo cultureinfo = new System.Globalization.CultureInfo("en-US");
-            string code = "E" + DateTime.Now.Date.Year.ToString(cultureinfo);
+            Equipment_SETs = (from a in efen.Equipment_SET
+                              where a.SET_ID == SET_ID 
+                              select a).ToArray();
+        }
 
-            string runno = GetRunno();
-            code += runno;
+        private static List<ClassFieldValue> SetField_SET(List<ClassFieldValue> fields, Equipment_SET en)
+        {
+            //fields.Add(new ClassFieldValue("SET_ID", en.SET_ID));
+            fields.Add(new ClassFieldValue("SETName", en.SETName));
+            fields.Add(new ClassFieldValue("Price", en.Price));
+            fields.Add(new ClassFieldValue("Description", en.Description));
+            return fields;
+        }
+
+        private static List<ClassFieldValue> SetField_SET_DETAIL(List<ClassFieldValue> fields, Equipment_SET_detail en)
+        {
+            //fields.Add(new ClassFieldValue("SET_DET_ID", en.SET_DET_ID));
+            fields.Add(new ClassFieldValue("SET_ID", en.SET_ID));
+            fields.Add(new ClassFieldValue("Equip_ID", en.Equip_ID));
+            fields.Add(new ClassFieldValue("cost", en.cost));
+            return fields;
+        }
+
+        public static ResultEN Insert_Equipment_SET_detail(Equipment_SET_detail en)
+        {
+            ResultEN res = new ResultEN();
+
+            //int? _Id = GetID("Equipment_SET_detail", "SET_DET_ID");
 
             List<ClassFieldValue> fields = new List<ClassFieldValue>();
-            fields.Add(new ClassFieldValue("Emp_id", code));
-            fields.Add(new ClassFieldValue("CreatedBy", HttpContext.Current.User.Identity.Name));
-            fields.Add(new ClassFieldValue("CreatedDate", DateTime.Now));
-            //SetField(fields, en);
+            //en.SET_DET_ID = _Id.Value;
+            fields = SetField_SET_DETAIL(fields, en);
 
-
-            //res = ClassMain.Insert(tb_name, fields);
-            return true;
+            res = ClassMain.Insert("Equipment_SET_detail", fields);
+            return res;
         }
 
-        //public static ResultEN Update(EmployeeEN en)
-        //{
-        //    ResultEN res = new ResultEN();
-        //    List<ClassFieldValue> fields = new List<ClassFieldValue>();
+        public static ResultEN Insert_Equipment_SET(ref Equipment_SET en)
+        {
+            ResultEN res = new ResultEN();
 
-        //    fields.Add(new ClassFieldValue("UpdatedBy", HttpContext.Current.User.Identity.Name));
-        //    fields.Add(new ClassFieldValue("UpdatedDate", DateTime.Now));
-        //    SetField(fields, en);
+            // int? _Id = GetID("Equipment_SET", "SET_ID");
+            List<ClassFieldValue> fields = new List<ClassFieldValue>();
 
-        //    List<ClassFieldValue> fieldscon = new List<ClassFieldValue>();
-        //    fieldscon.Add(new ClassFieldValue("Emp_id", en.Emp_id));
+            //en.SET_ID = _Id.Value;
+            fields = SetField_SET(fields, en);
 
-        //    res = ClassMain.Update(tb_name, fields, fieldscon);
-        //    return res;
-        //}
+            res = ClassMain.Insert("Equipment_SET", fields);
+            return res;
+        }
 
         public static ResultEN Delete(int id)
         {
@@ -173,6 +187,45 @@ namespace Web_T_REC.Classes
             string sql = "DELETE From Employees Where id=" + id;
             res.result = ClassMain.ExecuteQuery(sql);
             return res;
+        }
+
+        public static bool SetData_Equipment(Equipment_SET Equipment_SETone, List<Equipment_SET_detail> lstEquipment_SET_detail)
+        {
+            bool result = false;
+            ResultEN ResultENs = new ResultEN();
+            if (Equipment_SETone != null)
+            {
+                ResultENs = Insert_Equipment_SET(ref Equipment_SETone);
+
+                if (ResultENs != null && ResultENs.result == true)
+                {
+                    if (lstEquipment_SET_detail != null && lstEquipment_SET_detail.Any())
+                    {
+                        Equipment_SET[] Equipment_SETs = null;
+                        lstEquipment_SET_detail.ForEach(x => x.SET_ID = Convert.ToInt32(ResultENs.returnValue));
+
+                        foreach (var item in lstEquipment_SET_detail)
+                        {
+                            ResultENs = Insert_Equipment_SET_detail(item);
+                            if (ResultENs.result == false)
+                            {
+                                result = false;
+                            }
+                            else
+
+                            {
+                                result = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    //break;
+                }
+            }
+
+            return result;
         }
 
     }
