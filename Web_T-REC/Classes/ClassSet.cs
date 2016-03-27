@@ -44,14 +44,36 @@ namespace Web_T_REC.Classes
             }
         }
 
-        public static void LoadTypeEquipment(out Equipment[] objects, int Equip_type_id)
+        public static void LoadTypeEquipment(out Equipment[] objects, int? Equip_type_id, int? _id = null)
         {
             objects = null;
+
+            string condition = "";
 
             string strY = DateTime.Now.Year.ToString(new System.Globalization.CultureInfo("en-US"));
             StringBuilder sql = new StringBuilder();
             sql.AppendLine(" select * FROM [dbo].[Equipment] ");
-            sql.AppendLine("where Equip_type_id = " + Equip_type_id);
+            //sql.AppendLine("where Equip_type_id = " + Equip_type_id);
+
+            if (Equip_type_id != null)
+            {
+                if (condition == "")
+                    condition = condition + "WHERE\n    ";
+                else
+                    condition = condition + "   AND ";
+                condition = condition + "Equip_type_id = " + Equip_type_id + "\n";
+            }
+
+            if (_id != null)
+            {
+                if (condition == "")
+                    condition = condition + "WHERE\n    ";
+                else
+                    condition = condition + "   AND ";
+                condition = condition + " id = " + _id + "\n";
+            }
+
+            sql.AppendLine(condition);
 
             DataTable dt = ClassMain.ExecuteComandTable(sql.ToString());
             if (dt != null && dt.Rows.Count > 0)
@@ -71,9 +93,8 @@ namespace Web_T_REC.Classes
                     en.SN = item["SN"].ToString();
                     en.Number = item["Number"].ToString();
 
-                    en.CostBuy = int.Parse(item["CostBuy"].ToString());
-                    en.CostRent = int.Parse(item["CostRent"].ToString());
-                    en.ID = int.Parse(item["Id"].ToString());
+                    en.CostBuy = item["CostBuy"] != DBNull.Value ? Convert.ToDecimal(item["CostBuy"].ToString()) : (decimal?)null;//int.Parse(item["CostBuy"].ToString());
+                    en.CostRent = item["CostRent"] != DBNull.Value ? Convert.ToDecimal(item["CostRent"].ToString()) : (decimal?)null;// int.Parse(item["CostRent"].ToString());
 
                     en.SupplierName = item["SupplierName"].ToString();
                     en.BuyDate = item["BuyDate"] != DBNull.Value ? Convert.ToDateTime(item["BuyDate"].ToString()) : (DateTime?)null;
@@ -89,6 +110,7 @@ namespace Web_T_REC.Classes
                 }
             }
         }
+
 
         public static string GetRunno()
         {

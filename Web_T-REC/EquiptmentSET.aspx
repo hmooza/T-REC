@@ -26,7 +26,7 @@
                             <div class="form-horizontal">
                                 <label class="control-label col-sm-2 col-md-1" for="txtUsername">SET Name:</label>
                                 <div class="col-sm-3 col-md-3">
-                                    <asp:TextBox ID="txtinputUsername" runat="server" type="text" class="form-control" placeholder="input SET Name" ValidationGroup="updatedata"></asp:TextBox>
+                                    <asp:TextBox ID="txtinputUsername" runat="server" type="text" class="form-control" placeholder="+" ValidationGroup="updatedata"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="input username" ForeColor="Red"
                                         ControlToValidate="txtinputUsername" ValidationGroup="updatedata"></asp:RequiredFieldValidator>
                                 </div>
