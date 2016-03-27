@@ -12,11 +12,13 @@ namespace Web_T_REC.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Equipment_SET
+    public partial class Packages
     {
-        public string SETName { get; set; }
+        public int Pack_Id { get; set; }
+        public string Name { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string Description { get; set; }
-        public int SET_ID { get; set; }
+        public Nullable<int> SET_ID { get; set; }
+        public Nullable<int> Equip_Id { get; set; }
     }
 }

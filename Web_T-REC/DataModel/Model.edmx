@@ -16,6 +16,7 @@
           <EntitySet Name="Equipment_Type" EntityType="Model.Store.Equipment_Type" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="JobPosition" EntityType="Model.Store.JobPosition" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="JobPosition_Emp" EntityType="Model.Store.JobPosition_Emp" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Packages" EntityType="Model.Store.Packages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Roles" EntityType="Model.Store.Roles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="sysdiagrams" EntityType="Model.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Users" EntityType="Model.Store.Users" store:Type="Tables" Schema="dbo" />
@@ -105,9 +106,9 @@
         </EntityType>
         <EntityType Name="Equipment_SET">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="SET_ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SET_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="SETName" Type="nvarchar(max)" />
           <Property Name="Price" Type="numeric" Precision="7" Scale="2" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
@@ -120,8 +121,7 @@
           <Property Name="SET_ID" Type="int" Nullable="false" />
           <Property Name="Equip_ID" Type="int" Nullable="false" />
           <Property Name="cost" Type="decimal" />
-          <Property Name="discount" Type="int" />
-          <Property Name="running" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SET_DET_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Equipment_Type">
           <Key>
@@ -160,6 +160,17 @@
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Packages">
+          <Key>
+            <PropertyRef Name="Pack_Id" />
+          </Key>
+          <Property Name="Pack_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Price" Type="numeric" Precision="7" Scale="2" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="SET_ID" Type="int" />
+          <Property Name="Equip_Id" Type="int" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -210,6 +221,7 @@
           <EntitySet Name="Department" EntityType="Model.Department" />
           <EntitySet Name="JobPosition_Emp" EntityType="Model.JobPosition_Emp" />
           <EntitySet Name="sysdiagrams" EntityType="Model.sysdiagrams" />
+          <EntitySet Name="Packages" EntityType="Model.Packages" />
         </EntityContainer>
         <EntityType Name="Employees">
           <Key>
@@ -273,12 +285,12 @@
         </EntityType>
         <EntityType Name="Equipment_SET">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="SET_ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="SETName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Type="Decimal" Name="Price" Precision="7" Scale="2" />
           <Property Type="String" Name="Description" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SET_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Equipment_SET_detail">
           <Key>
@@ -288,8 +300,7 @@
           <Property Name="SET_ID" Type="Int32" Nullable="false" />
           <Property Name="Equip_ID" Type="Int32" Nullable="false" />
           <Property Name="cost" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="discount" Type="Int32" />
-          <Property Name="running" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="SET_DET_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Equipment_Type">
           <Key>
@@ -387,6 +398,17 @@
           <Property Type="Int32" Name="version" />
           <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="Packages">
+          <Key>
+            <PropertyRef Name="Pack_Id" />
+          </Key>
+          <Property Type="Int32" Name="Pack_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Price" Precision="7" Scale="2" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SET_ID" />
+          <Property Type="Int32" Name="Equip_Id" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -454,9 +476,9 @@
           <EntitySetMapping Name="Equipment_SET">
             <EntityTypeMapping TypeName="Model.Equipment_SET">
               <MappingFragment StoreEntitySet="Equipment_SET">
+                <ScalarProperty Name="SET_ID" ColumnName="SET_ID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SETName" ColumnName="SETName" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -464,12 +486,11 @@
           <EntitySetMapping Name="Equipment_SET_detail">
             <EntityTypeMapping TypeName="Model.Equipment_SET_detail">
               <MappingFragment StoreEntitySet="Equipment_SET_detail">
+                <ScalarProperty Name="SET_DET_ID" ColumnName="SET_DET_ID" />
                 <ScalarProperty Name="SET_ID" ColumnName="SET_ID" />
                 <ScalarProperty Name="Equip_ID" ColumnName="Equip_ID" />
                 <ScalarProperty Name="cost" ColumnName="cost" />
-                <ScalarProperty Name="discount" ColumnName="discount" />
-                <ScalarProperty Name="running" ColumnName="running" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Equipment_Type">
@@ -572,6 +593,18 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Packages">
+            <EntityTypeMapping TypeName="Model.Packages">
+              <MappingFragment StoreEntitySet="Packages">
+                <ScalarProperty Name="Equip_Id" ColumnName="Equip_Id" />
+                <ScalarProperty Name="SET_ID" ColumnName="SET_ID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Pack_Id" ColumnName="Pack_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -18,6 +18,7 @@
         <EntityTypeShape EntityType="Model.Department" Width="1.5" PointX="6.2322664569282278" PointY="22.953869070370622" />
         <EntityTypeShape EntityType="Model.JobPosition_Emp" Width="1.5" PointX="7.2419541735397432" PointY="26.527132642700863" />
         <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="8.7281087509952986" PointY="18.816119798839146" />
+        <EntityTypeShape EntityType="Model.Packages" Width="1.5" PointX="10.676986025030253" PointY="27.222735223929739" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

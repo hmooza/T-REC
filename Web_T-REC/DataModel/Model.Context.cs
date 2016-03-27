@@ -38,5 +38,6 @@ namespace Web_T_REC.DataModel
         public DbSet<Department> Department { get; set; }
         public DbSet<JobPosition_Emp> JobPosition_Emp { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public DbSet<Packages> Packages { get; set; }
     }
 }

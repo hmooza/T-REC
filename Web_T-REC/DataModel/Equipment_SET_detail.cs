@@ -17,7 +17,6 @@ namespace Web_T_REC.DataModel
         public int SET_ID { get; set; }
         public int Equip_ID { get; set; }
         public Nullable<decimal> cost { get; set; }
-        public Nullable<int> discount { get; set; }
-        public int running { get; set; }
+        public int SET_DET_ID { get; set; }
     }
 }
