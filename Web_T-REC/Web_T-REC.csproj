@@ -103,6 +103,8 @@
     <Content Include="JobPosition.aspx" />
     <Content Include="JobQ.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="QuotationDetail.aspx" />
+    <Content Include="QuotationList.aspx" />
     <Content Include="Script\GridView.js" />
     <Content Include="Script\gridviewJs.css" />
     <Content Include="Script\ScriptCommon.js" />
@@ -265,6 +267,20 @@
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuotationDetail.aspx.cs">
+      <DependentUpon>QuotationDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuotationDetail.aspx.designer.cs">
+      <DependentUpon>QuotationDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QuotationList.aspx.cs">
+      <DependentUpon>QuotationList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuotationList.aspx.designer.cs">
+      <DependentUpon>QuotationList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="sys_User.aspx.cs">
       <DependentUpon>sys_User.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
