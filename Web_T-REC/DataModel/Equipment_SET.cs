@@ -16,5 +16,7 @@ namespace Web_T_REC.DataModel
     {
         public int ID { get; set; }
         public string SETName { get; set; }
+        public Nullable<decimal> Price { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -34,5 +34,9 @@ namespace Web_T_REC.DataModel
         public DbSet<JobPosition> JobPosition { get; set; }
         public DbSet<Roles> Roles { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Department> Department { get; set; }
+        public DbSet<JobPosition_Emp> JobPosition_Emp { get; set; }
+        public DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

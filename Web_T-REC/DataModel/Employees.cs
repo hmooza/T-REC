@@ -28,5 +28,15 @@ namespace Web_T_REC.DataModel
         public Nullable<System.DateTime> EndDate { get; set; }
         public string position { get; set; }
         public Nullable<decimal> salary { get; set; }
+        public string EMP_ID { get; set; }
+        public Nullable<System.DateTime> BirthDate { get; set; }
+        public Nullable<System.DateTime> StartWorkDate { get; set; }
+        public Nullable<System.DateTime> EndWorkDate { get; set; }
+        public string Email { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public string CreatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedDate { get; set; }
+        public string UpdatedBy { get; set; }
+        public Nullable<int> DeptId { get; set; }
     }
 }

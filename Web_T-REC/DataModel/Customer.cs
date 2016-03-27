@@ -12,15 +12,22 @@ namespace Web_T_REC.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class JobPosition
+    public partial class Customer
     {
         public int ID { get; set; }
-        public string Position { get; set; }
-        public Nullable<decimal> cost { get; set; }
+        public string C_ID { get; set; }
+        public string Name { get; set; }
+        public string Tel { get; set; }
+        public string Email { get; set; }
+        public string Fax { get; set; }
+        public string EXT { get; set; }
+        public string Name_Company { get; set; }
+        public string Address { get; set; }
+        public string Tax_Number { get; set; }
+        public string Tel_Company { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CreatedBy { get; set; }
-        public Nullable<System.DateTime> UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
-        public Nullable<int> DeptId { get; set; }
+        public Nullable<System.DateTime> UpdatedDate { get; set; }
     }
 }

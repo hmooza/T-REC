@@ -12,15 +12,14 @@ namespace Web_T_REC.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class JobPosition
+    public partial class JobPosition_Emp
     {
-        public int ID { get; set; }
-        public string Position { get; set; }
+        public string Emp_id { get; set; }
+        public int Pos_id { get; set; }
         public Nullable<decimal> cost { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
-        public Nullable<int> DeptId { get; set; }
     }
 }
