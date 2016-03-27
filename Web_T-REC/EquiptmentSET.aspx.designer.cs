@@ -49,13 +49,13 @@ namespace Web_T_REC {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divcontent;
         
         /// <summary>
-        /// inputUsername control.
+        /// txtinputUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inputUsername;
+        protected global::System.Web.UI.WebControls.TextBox txtinputUsername;
         
         /// <summary>
         /// RequiredFieldValidator1 control.
@@ -67,22 +67,22 @@ namespace Web_T_REC {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// Button2 control.
+        /// btnCreateSetName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button btnCreateSetName;
         
         /// <summary>
-        /// datagrid control.
+        /// grid_SetName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView datagrid;
+        protected global::System.Web.UI.WebControls.GridView grid_SetName;
         
         /// <summary>
         /// div1 control.
@@ -112,31 +112,31 @@ namespace Web_T_REC {
         protected global::System.Web.UI.WebControls.DropDownList ddlType;
         
         /// <summary>
-        /// ddlCat control.
+        /// ddlCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCat;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
         
         /// <summary>
-        /// ddlName control.
+        /// ddlEquipmentList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEquipmentList;
         
         /// <summary>
-        /// Button1 control.
+        /// btnAddEq control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnAddEq;
         
         /// <summary>
         /// grid_Detail control.
@@ -155,15 +155,6 @@ namespace Web_T_REC {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox2;
-        
-        /// <summary>
-        /// txtCost control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCost;
         
         /// <summary>
         /// TextBox3 control.

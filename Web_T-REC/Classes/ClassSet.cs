@@ -90,6 +90,69 @@ namespace Web_T_REC.Classes
             }
         }
 
+        public static string GetRunno()
+        {
+            string strY = DateTime.Now.Year.ToString(new System.Globalization.CultureInfo("en-US"));
+            StringBuilder sql = new StringBuilder();
+            sql.AppendLine("select ISNULL(MAX(a.running),1) as runno from dbo.Equipment_SET_detail");
+
+            DataTable dt = ClassMain.ExecuteComandTable(sql.ToString());
+            if (dt.Rows.Count > 0)
+            {
+                int no = Convert.ToInt32(dt.Rows[0][0]);
+                no += 1;
+                return no.ToString("00");
+            }
+
+
+            return "01";
+        }
+
+        public static bool Insert(List<Equipment_SET_detail> en)
+        {
+            //ResultEN res = new ResultEN();
+
+            // Gen Employee code
+            System.Globalization.CultureInfo cultureinfo = new System.Globalization.CultureInfo("en-US");
+            string code = "E" + DateTime.Now.Date.Year.ToString(cultureinfo);
+
+            string runno = GetRunno();
+            code += runno;
+
+            List<ClassFieldValue> fields = new List<ClassFieldValue>();
+            fields.Add(new ClassFieldValue("Emp_id", code));
+            fields.Add(new ClassFieldValue("CreatedBy", HttpContext.Current.User.Identity.Name));
+            fields.Add(new ClassFieldValue("CreatedDate", DateTime.Now));
+            //SetField(fields, en);
+
+
+            //res = ClassMain.Insert(tb_name, fields);
+            return true;
+        }
+
+        //public static ResultEN Update(EmployeeEN en)
+        //{
+        //    ResultEN res = new ResultEN();
+        //    List<ClassFieldValue> fields = new List<ClassFieldValue>();
+
+        //    fields.Add(new ClassFieldValue("UpdatedBy", HttpContext.Current.User.Identity.Name));
+        //    fields.Add(new ClassFieldValue("UpdatedDate", DateTime.Now));
+        //    SetField(fields, en);
+
+        //    List<ClassFieldValue> fieldscon = new List<ClassFieldValue>();
+        //    fieldscon.Add(new ClassFieldValue("Emp_id", en.Emp_id));
+
+        //    res = ClassMain.Update(tb_name, fields, fieldscon);
+        //    return res;
+        //}
+
+        public static ResultEN Delete(int id)
+        {
+            ResultEN res = new ResultEN();
+            string sql = "DELETE From Employees Where id=" + id;
+            res.result = ClassMain.ExecuteQuery(sql);
+            return res;
+        }
 
     }
 }
