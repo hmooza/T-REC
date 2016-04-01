@@ -14,8 +14,6 @@ namespace Web_T_REC.DataModel
     
     public partial class Employees
     {
-        public int running { get; set; }
-        public string ID { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Nickname { get; set; }
@@ -24,8 +22,6 @@ namespace Web_T_REC.DataModel
         public string IdenNumber { get; set; }
         public string AccNo { get; set; }
         public string AccName { get; set; }
-        public Nullable<System.DateTime> StartDate { get; set; }
-        public Nullable<System.DateTime> EndDate { get; set; }
         public string position { get; set; }
         public Nullable<decimal> salary { get; set; }
         public string EMP_ID { get; set; }
