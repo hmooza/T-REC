@@ -34,5 +34,6 @@ namespace Web_T_REC.DataModel
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<int> DeptId { get; set; }
+        public int ID { get; set; }
     }
 }

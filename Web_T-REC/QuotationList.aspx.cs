@@ -13,5 +13,25 @@ namespace Web_T_REC
         {
 
         }
+
+        protected void datagrid_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+        }
+
+        protected void datagrid_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void datagrid_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void btnTest_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/QuotationDetail.aspx?mode=" + Enumeration.ObjectStutus.Insert.GetHashCode().ToString());
+        }
     }
 }

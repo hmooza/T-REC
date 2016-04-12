@@ -191,7 +191,7 @@
                             </ul>
                         </li>
 
-                        <li><a href="Quotation.aspx">QUOTATION</a></li>
+                        <li><a href="QuotationList.aspx">QUOTATION</a></li>
                         <li><a href="Quotation.aspx">INVOICE</a></li>
                         <li><a href="Quotation.aspx">SARALY</a></li>
 

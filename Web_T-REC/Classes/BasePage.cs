@@ -17,6 +17,16 @@ namespace Web_T_REC
             base.OnInit(e);
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            if (Context.User.Identity.IsAuthenticated == false)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
+
+            base.OnLoad(e);
+        }
+
         protected Web_T_REC.DataModel.Entities NewEntities()
         {
             var dbContext = new Web_T_REC.DataModel.Entities();
