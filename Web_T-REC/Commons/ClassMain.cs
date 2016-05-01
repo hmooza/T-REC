@@ -72,7 +72,7 @@ public class ClassMain
     {
         bool strValue = false;
         SqlCommand Com = new SqlCommand();
-        
+
 
         SqlTransaction tr;
         SqlConnection ConnSave = ConnDB();
@@ -115,7 +115,7 @@ public class ClassMain
         DataTable DT = new DataTable();
         SqlDataReader Dr;
         SqlCommand Com = new SqlCommand();
-      
+
         SqlConnection Conn = ConnDB();
         Conn.Open();
 
@@ -130,7 +130,7 @@ public class ClassMain
             Dr = Com.ExecuteReader();
             DT.Load(Dr);
             Conn.Close();
-           
+
         }
         catch
         {
@@ -534,7 +534,7 @@ public class ClassMain
     }
 
 
-    public static string getInsertQueryString(string tablename, List<ClassFieldValue> fields, string UpdDateField)
+    public static string getInsertQueryString(string tablename, List<ClassFieldValue> fields, string UpdDateField, string ID = null)
     {
         StringBuilder sqlValue = new StringBuilder();
         StringBuilder sqlFieldname = new StringBuilder();
@@ -548,7 +548,6 @@ public class ClassMain
         {
             sqlFieldname.Append("," + UpdDateField);
         }
-
 
         foreach (ClassFieldValue field in fields)
         {
@@ -570,13 +569,21 @@ public class ClassMain
                     case TypeCode.Int16:
                     case TypeCode.Int32:
                     case TypeCode.Int64:
+                    case TypeCode.Decimal:
                         sqlValue.AppendLine(Convert.ToString(field.Value));
                         break;
 
                     case TypeCode.DateTime:
-                        string strDate = Convert.ToDateTime(field.Value).ToString("yyyy-MM-dd H:mm:ss");
-                        //DateTime.Parse(field.Value, new System.Globalization.CultureInfo("th-TH")).ToString("yyyy-MM-dd");
-                        sqlValue.AppendLine("Convert(Datetime,'" + strDate + "',120)");
+                        if (Convert.ToDateTime(field.Value) == DateTime.MinValue)
+                        {
+                            sqlValue.AppendLine("Null");
+                        }
+                        else
+                        {
+                            string strDate = Convert.ToDateTime(field.Value).ToString("yyyy-MM-dd H:mm:ss");
+                            //DateTime.Parse(field.Value, new System.Globalization.CultureInfo("th-TH")).ToString("yyyy-MM-dd");
+                            sqlValue.AppendLine("Convert(Datetime,'" + strDate + "',120)");
+                        }
                         break;
                 }
             }
@@ -587,10 +594,12 @@ public class ClassMain
             sqlValue.AppendLine(", getdate()");
         }
 
-
-
         StringBuilder strQuery = new StringBuilder();
         strQuery.AppendLine("INSERT INTO " + tablename + " ( " + sqlFieldname.ToString() + ")");
+        if (!string.IsNullOrEmpty(ID))
+        {
+            strQuery.AppendLine("OUTPUT INSERTED." + ID);
+        }
         strQuery.AppendLine(" VALUES (" + sqlValue.ToString() + ")");
 
         return strQuery.ToString();
@@ -643,23 +652,19 @@ public class ClassMain
                             sqlValue.AppendLine("Convert(Datetime,'" + strDate + "',120)");
                         }
                         break;
-
-                    
-
-
                 }
             }
         }
 
-   
         StringBuilder strQuery = new StringBuilder();
         strQuery.AppendLine("INSERT INTO " + tablename + " ( " + sqlFieldname.ToString() + ")");
+
         strQuery.AppendLine(" VALUES (" + sqlValue.ToString() + ")");
 
         return strQuery.ToString();
     }
 
-    public static ResultEN Insert(string tb_name, List<ClassFieldValue> fields)
+    public static ResultEN Insert(string tb_name, List<ClassFieldValue> fields, string ID = null)
     {
         ResultEN res = new ResultEN();
         res.result = false;
@@ -673,10 +678,10 @@ public class ClassMain
             sqlCom.Connection = Conn;
         }
 
-        sqlCom.CommandType =CommandType.Text;
+        sqlCom.CommandType = CommandType.Text;
         sqlCom.CommandTimeout = 0;
-        sqlCom.CommandText = getInsertQueryString(tb_name, fields);
-
+        //sqlCom.CommandText = getInsertQueryString(tb_name, fields,);
+        sqlCom.CommandText = getInsertQueryString(tb_name, fields, "", ID);
 
         Int32 intValue = 0;
         try
@@ -685,16 +690,16 @@ public class ClassMain
             Conn.Close();
             res.result = true;
             res.returnValue = intValue;
-            
+
         }
         catch (Exception)
         {
             intValue = -1;
             Conn.Close();
-            res.result = false; 
+            res.result = false;
             res.returnValue = intValue;
             throw;
-            
+
         }
         finally
         {

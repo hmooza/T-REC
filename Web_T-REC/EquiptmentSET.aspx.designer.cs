@@ -49,6 +49,15 @@ namespace Web_T_REC {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divcontent;
         
         /// <summary>
+        /// upd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upd;
+        
+        /// <summary>
         /// grid_SetName control.
         /// </summary>
         /// <remarks>
@@ -130,13 +139,13 @@ namespace Web_T_REC {
         protected global::System.Web.UI.WebControls.TextBox txtSetName;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// RequiredFieldValidator_SetName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator_SetName;
         
         /// <summary>
         /// txtDescription control.
@@ -148,13 +157,13 @@ namespace Web_T_REC {
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
         
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// RequiredFieldValidator_Description control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator_Description;
         
         /// <summary>
         /// txtPrice control.
@@ -166,13 +175,13 @@ namespace Web_T_REC {
         protected global::System.Web.UI.WebControls.TextBox txtPrice;
         
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// RequiredFieldValidator_Price control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator_Price;
         
         /// <summary>
         /// divCommand control.
@@ -184,13 +193,13 @@ namespace Web_T_REC {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCommand;
         
         /// <summary>
-        /// btnCencel control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCencel;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
         /// btnSave control.
