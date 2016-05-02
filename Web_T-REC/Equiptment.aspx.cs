@@ -196,7 +196,6 @@ namespace Web_T_REC
             en.CostRent = Convert.ToDecimal(txtCostRent.Text);
             en.SN = txtSN.Text;
 
-
             en.Equip_type_id = Convert.ToInt32(hidID.Value);
         }
 
