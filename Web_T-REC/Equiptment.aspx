@@ -195,7 +195,7 @@
                                     <asp:TextBox ID="txtReceiptTax" runat="server" CssClass="form-control input-sm">
                                     </asp:TextBox>
                         </div>
-                    </div>
+                    </div><!-- Test Kub -->
 
                     <!-- Row 4 -->
                     <div class="row">
