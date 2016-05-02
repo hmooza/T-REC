@@ -106,12 +106,12 @@
                     <!-- Row 2-->
                     <div class="row">
                         <!-- Treeview -->
-                        <div style="padding-left: 20px;">ประเภท:</div>
+                        <div style="padding-left: 20px;">ประเภท (กดเลือก):</div>
 
                         <asp:HiddenField ID="hidID" runat="server" />
 
                         <div class="input-group col-md-2" style="padding-left: 20px;">
-                            <asp:TextBox ID="txtTypeName" runat="server" CssClass="form-control input-sm" />
+                            <asp:TextBox ID="txtTypeName" runat="server" CssClass="form-control input-sm" Enabled="false" />
                             <label class="input-group-addon"
                                 data-toggle="modal" data-target="#EquiptTypeModal">
                             </label>
@@ -195,22 +195,7 @@
                                     <asp:TextBox ID="txtReceiptTax" runat="server" CssClass="form-control input-sm">
                                     </asp:TextBox>
                         </div>
-                    </div><!-- Test Kub -->
-
-                    <!-- Row 4 -->
-                    <div class="row">
-                        <div class="col-md-2 form-group">
-                            ประเภท:
-                                    <asp:DropDownList ID="TextBox9" runat="server" CssClass="form-control input-sm"></asp:DropDownList>
-                        </div>
-
-                        <div class="col-md-2 form-group">
-                            ชนิด:
-                                    <asp:DropDownList ID="TextBox10" runat="server" CssClass="form-control input-sm">
-                                    </asp:DropDownList>
-                        </div>
                     </div>
-
 
                 </form>
             </div>

@@ -220,24 +220,6 @@ namespace Web_T_REC {
         protected global::System.Web.UI.WebControls.TextBox txtReceiptTax;
         
         /// <summary>
-        /// TextBox9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TextBox9;
-        
-        /// <summary>
-        /// TextBox10 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TextBox10;
-        
-        /// <summary>
         /// divCommand control.
         /// </summary>
         /// <remarks>
