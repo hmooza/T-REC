@@ -133,6 +133,7 @@
     <Compile Include="Classes\ClassEmployee.cs" />
     <Compile Include="Classes\ClassEuipt.cs" />
     <Compile Include="Classes\ClassJopPosition.cs" />
+    <Compile Include="Classes\ClassPackage.cs" />
     <Compile Include="Classes\ClassSet.cs" />
     <Compile Include="Commons\Class1.cs" />
     <Compile Include="Commons\ClassMain.cs" />
@@ -194,6 +195,12 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="DataModel\Packages.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\Package_Equip.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\Package_Set.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataModel\Roles.cs">

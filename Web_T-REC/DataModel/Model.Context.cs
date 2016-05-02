@@ -41,6 +41,8 @@ namespace Web_T_REC.DataModel
         public DbSet<Department> Department { get; set; }
         public DbSet<JobPosition_Emp> JobPosition_Emp { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public DbSet<Package_Equip> Package_Equip { get; set; }
+        public DbSet<Package_Set> Package_Set { get; set; }
         public DbSet<Packages> Packages { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

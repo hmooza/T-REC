@@ -99,7 +99,7 @@
                         </div>
                         <div class="col-md-2 form-group">
                             เบอร์:
-                                <asp:TextBox ID="txtEquipNo" runat="server" CssClass="form-control input-sm" MaxLength="250"></asp:TextBox>
+                                <asp:TextBox ID="txtEquipNo" runat="server" CssClass="form-control input-sm" MaxLength="10"></asp:TextBox>
                         </div>
                     </div>
 
