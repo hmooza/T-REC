@@ -14,9 +14,16 @@ namespace Web_T_REC.DataModel
     
     public partial class Equipment_SET
     {
+        public Equipment_SET()
+        {
+            this.Package_Set = new HashSet<Package_Set>();
+        }
+    
         public string SETName { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string Description { get; set; }
         public int SET_ID { get; set; }
+    
+        public virtual ICollection<Package_Set> Package_Set { get; set; }
     }
 }

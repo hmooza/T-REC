@@ -13,13 +13,18 @@
         <EntityTypeShape EntityType="Model.Equipment_Type" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.JobPosition" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Roles" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="1" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Customer" Width="1.5" PointX="10.875" PointY="1.125" />
-        <EntityTypeShape EntityType="Model.Department" Width="1.5" PointX="6.2322664569282278" PointY="22.953869070370622" />
-        <EntityTypeShape EntityType="Model.JobPosition_Emp" Width="1.5" PointX="7.2419541735397432" PointY="26.527132642700863" />
-        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="8.7281087509952986" PointY="18.816119798839146" />
-        <EntityTypeShape EntityType="Model.Packages" Width="1.5" PointX="10.676986025030253" PointY="27.222735223929739" />
-      </Diagram>
+        <EntityTypeShape EntityType="Model.Department" Width="1.5" PointX="10.5" PointY="5.375" />
+        <EntityTypeShape EntityType="Model.JobPosition_Emp" Width="1.5" PointX="8.75" PointY="5.375" />
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="12.125" PointY="5.375" />
+        <EntityTypeShape EntityType="Model.Package_Equip" Width="1.5" PointX="4.5" PointY="7.125" />
+        <EntityTypeShape EntityType="Model.Package_Set" Width="1.5" PointX="6.75" PointY="7.625" />
+        <EntityTypeShape EntityType="Model.Packages" Width="1.5" PointX="9" PointY="8.375" />
+        <AssociationConnector Association="Model.FK_Package_Set_01" />
+        <AssociationConnector Association="Model.FK_Packages_Equip_03" />
+        <AssociationConnector Association="Model.FK_Packages_01" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -18,7 +18,10 @@ namespace Web_T_REC.DataModel
         public string Name { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string Description { get; set; }
-        public Nullable<int> SET_ID { get; set; }
-        public Nullable<int> Equip_Id { get; set; }
+        public Nullable<int> Pack_Set_ID { get; set; }
+        public Nullable<int> Pack_Equip_Id { get; set; }
+    
+        public virtual Package_Equip Package_Equip { get; set; }
+        public virtual Package_Set Package_Set { get; set; }
     }
 }

@@ -16,10 +16,24 @@
           <EntitySet Name="Equipment_Type" EntityType="Model.Store.Equipment_Type" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="JobPosition" EntityType="Model.Store.JobPosition" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="JobPosition_Emp" EntityType="Model.Store.JobPosition_Emp" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Package_Equip" EntityType="Model.Store.Package_Equip" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Package_Set" EntityType="Model.Store.Package_Set" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Packages" EntityType="Model.Store.Packages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Roles" EntityType="Model.Store.Roles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="sysdiagrams" EntityType="Model.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Users" EntityType="Model.Store.Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Package_Set_01" Association="Model.Store.FK_Package_Set_01">
+            <End Role="Equipment_SET" EntitySet="Equipment_SET" />
+            <End Role="Package_Set" EntitySet="Package_Set" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Packages_01" Association="Model.Store.FK_Packages_01">
+            <End Role="Package_Set" EntitySet="Package_Set" />
+            <End Role="Packages" EntitySet="Packages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Packages_Equip_03" Association="Model.Store.FK_Packages_Equip_03">
+            <End Role="Package_Equip" EntitySet="Package_Equip" />
+            <End Role="Packages" EntitySet="Packages" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Customer">
           <Key>
@@ -161,6 +175,20 @@
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Package_Equip">
+          <Key>
+            <PropertyRef Name="Pack_Equip_Id" />
+          </Key>
+          <Property Name="Pack_Equip_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Equip_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Package_Set">
+          <Key>
+            <PropertyRef Name="Pack_Set_ID" />
+          </Key>
+          <Property Name="Pack_Set_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SET_ID" Type="int" />
+        </EntityType>
         <EntityType Name="Packages">
           <Key>
             <PropertyRef Name="Pack_Id" />
@@ -169,8 +197,8 @@
           <Property Name="Name" Type="nvarchar" MaxLength="20" />
           <Property Name="Price" Type="numeric" Precision="7" Scale="2" />
           <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="SET_ID" Type="int" />
-          <Property Name="Equip_Id" Type="int" />
+          <Property Name="Pack_Set_ID" Type="int" />
+          <Property Name="Pack_Equip_Id" Type="int" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -203,6 +231,42 @@
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_Package_Set_01">
+          <End Role="Equipment_SET" Type="Model.Store.Equipment_SET" Multiplicity="0..1" />
+          <End Role="Package_Set" Type="Model.Store.Package_Set" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment_SET">
+              <PropertyRef Name="SET_ID" />
+            </Principal>
+            <Dependent Role="Package_Set">
+              <PropertyRef Name="SET_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Packages_01">
+          <End Role="Package_Set" Type="Model.Store.Package_Set" Multiplicity="0..1" />
+          <End Role="Packages" Type="Model.Store.Packages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Package_Set">
+              <PropertyRef Name="Pack_Set_ID" />
+            </Principal>
+            <Dependent Role="Packages">
+              <PropertyRef Name="Pack_Set_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Packages_Equip_03">
+          <End Role="Package_Equip" Type="Model.Store.Package_Equip" Multiplicity="0..1" />
+          <End Role="Packages" Type="Model.Store.Packages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Package_Equip">
+              <PropertyRef Name="Pack_Equip_Id" />
+            </Principal>
+            <Dependent Role="Packages">
+              <PropertyRef Name="Pack_Equip_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -221,7 +285,6 @@
           <EntitySet Name="Department" EntityType="Model.Department" />
           <EntitySet Name="JobPosition_Emp" EntityType="Model.JobPosition_Emp" />
           <EntitySet Name="sysdiagrams" EntityType="Model.sysdiagrams" />
-          <EntitySet Name="Packages" EntityType="Model.Packages" />
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -252,7 +315,22 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-        </EntityContainer>
+          <EntitySet Name="Package_Equip" EntityType="Model.Package_Equip" />
+          <EntitySet Name="Package_Set" EntityType="Model.Package_Set" />
+          <EntitySet Name="Packages" EntityType="Model.Packages" />
+          <AssociationSet Name="FK_Package_Set_01" Association="Model.FK_Package_Set_01">
+            <End Role="Equipment_SET" EntitySet="Equipment_SET" />
+            <End Role="Package_Set" EntitySet="Package_Set" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Packages_Equip_03" Association="Model.FK_Packages_Equip_03">
+            <End Role="Package_Equip" EntitySet="Package_Equip" />
+            <End Role="Packages" EntitySet="Packages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Packages_01" Association="Model.FK_Packages_01">
+            <End Role="Package_Set" EntitySet="Package_Set" />
+            <End Role="Packages" EntitySet="Packages" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Employees">
           <Key>
             <PropertyRef Name="EMP_ID" />
@@ -317,6 +395,7 @@
           <Property Type="Decimal" Name="Price" Precision="7" Scale="2" />
           <Property Type="String" Name="Description" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="SET_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Package_Set" Relationship="Model.FK_Package_Set_01" FromRole="Equipment_SET" ToRole="Package_Set" />
         </EntityType>
         <EntityType Name="Equipment_SET_detail">
           <Key>
@@ -424,17 +503,6 @@
           <Property Type="Int32" Name="version" />
           <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Packages">
-          <Key>
-            <PropertyRef Name="Pack_Id" />
-          </Key>
-          <Property Type="Int32" Name="Pack_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="Price" Precision="7" Scale="2" />
-          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="SET_ID" />
-          <Property Type="Int32" Name="Equip_Id" />
-        </EntityType>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -446,7 +514,73 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-      </Schema>
+        <EntityType Name="Package_Equip">
+          <Key>
+            <PropertyRef Name="Pack_Equip_Id" />
+          </Key>
+          <Property Type="Int32" Name="Pack_Equip_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Equip_Id" />
+          <NavigationProperty Name="Packages" Relationship="Model.FK_Packages_Equip_03" FromRole="Package_Equip" ToRole="Packages" />
+        </EntityType>
+        <EntityType Name="Package_Set">
+          <Key>
+            <PropertyRef Name="Pack_Set_ID" />
+          </Key>
+          <Property Type="Int32" Name="Pack_Set_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="SET_ID" />
+          <NavigationProperty Name="Equipment_SET" Relationship="Model.FK_Package_Set_01" FromRole="Package_Set" ToRole="Equipment_SET" />
+          <NavigationProperty Name="Packages" Relationship="Model.FK_Packages_01" FromRole="Package_Set" ToRole="Packages" />
+        </EntityType>
+        <EntityType Name="Packages">
+          <Key>
+            <PropertyRef Name="Pack_Id" />
+          </Key>
+          <Property Type="Int32" Name="Pack_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Price" Precision="7" Scale="2" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Pack_Set_ID" />
+          <Property Type="Int32" Name="Pack_Equip_Id" />
+          <NavigationProperty Name="Package_Equip" Relationship="Model.FK_Packages_Equip_03" FromRole="Packages" ToRole="Package_Equip" />
+          <NavigationProperty Name="Package_Set" Relationship="Model.FK_Packages_01" FromRole="Packages" ToRole="Package_Set" />
+        </EntityType>
+        <Association Name="FK_Package_Set_01">
+          <End Type="Model.Equipment_SET" Role="Equipment_SET" Multiplicity="0..1" />
+          <End Type="Model.Package_Set" Role="Package_Set" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment_SET">
+              <PropertyRef Name="SET_ID" />
+            </Principal>
+            <Dependent Role="Package_Set">
+              <PropertyRef Name="SET_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Packages_Equip_03">
+          <End Type="Model.Package_Equip" Role="Package_Equip" Multiplicity="0..1" />
+          <End Type="Model.Packages" Role="Packages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Package_Equip">
+              <PropertyRef Name="Pack_Equip_Id" />
+            </Principal>
+            <Dependent Role="Packages">
+              <PropertyRef Name="Pack_Equip_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Packages_01">
+          <End Type="Model.Package_Set" Role="Package_Set" Multiplicity="0..1" />
+          <End Type="Model.Packages" Role="Packages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Package_Set">
+              <PropertyRef Name="Pack_Set_ID" />
+            </Principal>
+            <Dependent Role="Packages">
+              <PropertyRef Name="Pack_Set_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -633,18 +767,34 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Packages">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.Packages)">
-        <MappingFragment StoreEntitySet="Packages">
-          <ScalarProperty Name="Pack_Id" ColumnName="Pack_Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="SET_ID" ColumnName="SET_ID" />
-          <ScalarProperty Name="Equip_Id" ColumnName="Equip_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+          <EntitySetMapping Name="Package_Equip">
+            <EntityTypeMapping TypeName="Model.Package_Equip">
+              <MappingFragment StoreEntitySet="Package_Equip">
+                <ScalarProperty Name="Equip_Id" ColumnName="Equip_Id" />
+                <ScalarProperty Name="Pack_Equip_Id" ColumnName="Pack_Equip_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Package_Set">
+            <EntityTypeMapping TypeName="Model.Package_Set">
+              <MappingFragment StoreEntitySet="Package_Set">
+                <ScalarProperty Name="SET_ID" ColumnName="SET_ID" />
+                <ScalarProperty Name="Pack_Set_ID" ColumnName="Pack_Set_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Packages">
+            <EntityTypeMapping TypeName="Model.Packages">
+              <MappingFragment StoreEntitySet="Packages">
+                <ScalarProperty Name="Pack_Equip_Id" ColumnName="Pack_Equip_Id" />
+                <ScalarProperty Name="Pack_Set_ID" ColumnName="Pack_Set_ID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Pack_Id" ColumnName="Pack_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
