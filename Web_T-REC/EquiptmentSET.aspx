@@ -6,19 +6,19 @@
             display: none;
         }
     </style>
-     <script lang="javascript" type="text/javascript">
-         //Except only numbers for Age textbox
-         function onlyNumbers(event) {
-             var charCode = (event.which) ? event.which : event.keyCode
-             if (charCode > 31 && (charCode < 48 || charCode > 57))
-                 return false;
+    <script lang="javascript" type="text/javascript">
+        //Except only numbers for Age textbox
+        function onlyNumbers(event) {
+            var charCode = (event.which) ? event.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
 
-             return true;
-         }
+            return true;
+        }
 
-         function Alert(message) {
-             alert(message);
-         }
+        function Alert(message) {
+            alert(message);
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -33,7 +33,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Equipment SET</h3>
                 </div>
-                <asp:UpdatePanel ID="upd" runat="server" >
+                <asp:UpdatePanel ID="upd" runat="server">
                     <ContentTemplate>
                         <div class="panel-body">
                             <!-- GRID -->
@@ -62,6 +62,13 @@
                                     </Columns>
                                     <PagerStyle CssClass="pagination-ys" HorizontalAlign="Center"></PagerStyle>
                                 </asp:GridView>
+                            </div>
+
+                            <!-- Message -->
+                            <div id="msg" class="alert alert-info" role="alert" runat="server" visible="false">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span class="sr-only">info:</span>
+                                <asp:Label ID="lblmsg" runat="server" Text="Save Success."></asp:Label>
                             </div>
 
                             <!-- PANEL Detail  -->

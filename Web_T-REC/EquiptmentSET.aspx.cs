@@ -61,6 +61,12 @@ namespace Web_T_REC
             }
         }
 
+        private void MessageShow(string text)
+        {
+            msg.Visible = true;
+            lblmsg.Text = text;
+        }
+
         private void initial(int? Set_id = null)
         {
             Equipment_SET[] Equipment_SETs = null;
@@ -154,8 +160,8 @@ namespace Web_T_REC
             {
                 initial(SET_ID);
 
-                string message = "บันทึกสำเร็จ";
-
+                string message = "บันทึกเรียบร้อยแล้ว";
+                MessageShow(message);
                 ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "ToggleScript", "Alert(" + message + ")", true);
             }
         }
@@ -171,7 +177,7 @@ namespace Web_T_REC
                     ResultEN result_Set_detail = ClassSet.Delete_Equipment_SET(_set_id);
 
                     string message = "ลบสำเร็จ";
-
+                    MessageShow(message);
                     ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "ToggleScript", "Alert(" + message + ")", true);
                 }
             }
