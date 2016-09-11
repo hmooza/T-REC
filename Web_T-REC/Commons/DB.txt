@@ -1,0 +1,4 @@
+Sql server DB
+IP:27.254.57.238
+ID: sa
+Password:Tha1220!
